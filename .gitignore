@@ -1,0 +1,43 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+venv/
+.venv/
+env/
+
+# Django / backend
+*.sqlite3
+media/
+staticfiles/
+BACKEND/Gestion_Ma_Ec/.env
+BACKEND/Gestion_Ma_Ec/.env.*
+!BACKEND/Gestion_Ma_Ec/.env.example
+
+# Node / frontend
+node_modules/
+dist/
+coverage/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

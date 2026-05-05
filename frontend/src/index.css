@@ -1,0 +1,237 @@
+/* =========================================================
+   Modern Academic Aesthetic - Design System
+   ========================================================= */
+
+:root {
+  /* Colors */
+  --color-oxford-blue: #0B132B;
+  --color-oxford-blue-light: #1C2541;
+  --color-crimson: #780000;
+  --color-crimson-light: #C1121F;
+  --color-alabaster: #F7F7F2;
+  --color-paper: #FFFFFF;
+  --color-ink: #1A1A1A;
+  --color-ink-light: #4A4A4A;
+  --color-border: #E0E0E0;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-xxl: 8rem;
+
+  /* Shadows & Borders */
+  --shadow-subtle: 0 4px 20px rgba(11, 19, 43, 0.05);
+  --shadow-hover: 0 10px 30px rgba(11, 19, 43, 0.1);
+  --border-radius-sm: 2px; /* Keep it sharp and elegant */
+  --border-radius-md: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-alabaster);
+  color: var(--color-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-oxford-blue);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Base Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--spacing-xl) 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* Typography Utilities */
+.text-crimson { color: var(--color-crimson); }
+.text-muted { color: var(--color-ink-light); }
+.text-center { text-align: center; }
+.heading-jumbo { font-size: 4rem; margin-bottom: var(--spacing-lg); letter-spacing: -1px; }
+.heading-xl { font-size: 2.5rem; margin-bottom: var(--spacing-md); }
+.heading-lg { font-size: 2rem; margin-bottom: var(--spacing-md); }
+.heading-md { font-size: 1.5rem; margin-bottom: var(--spacing-sm); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-oxford-blue);
+  color: var(--color-paper);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-crimson);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-oxford-blue);
+  border-color: var(--color-oxford-blue);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-oxford-blue);
+  color: var(--color-paper);
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-subtle);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--color-oxford-blue-light);
+  font-family: var(--font-heading);
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-paper);
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-crimson);
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+}
+
+.academic-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.academic-table th,
+.academic-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.academic-table th {
+  background-color: var(--color-oxford-blue);
+  color: var(--color-paper);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.academic-table tr:last-child td {
+  border-bottom: none;
+}
+
+.academic-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.academic-table tbody tr:hover {
+  background-color: var(--color-alabaster);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 50px;
+  font-family: var(--font-body);
+}
+
+.badge-success { background-color: #E8F5E9; color: #2E7D32; }
+.badge-warning { background-color: #FFF3E0; color: #E65100; }
+.badge-danger { background-color: #FFEBEE; color: #C62828; }
