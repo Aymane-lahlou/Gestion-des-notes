@@ -1,0 +1,84 @@
+<mxfile host="65bd71144e">
+    <diagram id="diag-state-1" name="Page-1">
+        <mxGraphModel dx="1609" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1000" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="Brouillon / Non pret&#xa;(notes manquantes ou non verifiees)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=center;fontFamily=Helvetica;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="390" width="360" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Pret a envoyer&#xa;(notes completes + PDF pret)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=center;fontFamily=Helvetica;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="370" width="330" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="En cours d&#39;envoi&#xa;(appel webhook n8n)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;fontFamily=Helvetica;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="370" width="330" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Envoye&#xa;(status=sent)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=center;fontFamily=Helvetica;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1500" y="250" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Echec&#xa;(status=failed)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=center;fontFamily=Helvetica;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1500" y="530" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="shape=doubleEllipse;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="1590" y="780" width="36" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Verification des notes" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="2" edge="1">
+                    <mxGeometry x="0.0526" relative="1" as="geometry">
+                        <mxPoint x="40" y="480" as="sourcePoint"/>
+                        <mxPoint x="220" y="486" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="40" y="480"/>
+                            <mxPoint x="60" y="480"/>
+                            <mxPoint x="60" y="486"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="Toutes matieres notees" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="Declencher envoi" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="4" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="HTTP 200" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1310" y="372" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="KO / timeout" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="5" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1310" y="372" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="1455" y="373"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="25" value="Notes manquantes (missing_subject_grades)" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="4" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="865" y="690"/>
+                            <mxPoint x="1595" y="690"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="Correction des notes" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="7" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1565" y="760"/>
+                            <mxPoint x="390" y="760"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="Fin cycle etudiant" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="6" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Arret" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;fontFamily=Helvetica;fontSize=13;labelBackgroundColor=#ffffff;" parent="1" source="7" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="ellipse;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="476" width="24" height="24" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

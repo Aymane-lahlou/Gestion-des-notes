@@ -1,0 +1,39 @@
+<mxfile host="65bd71144e">
+    <diagram id="diag-package-1" name="Page-1">
+        <mxGraphModel dx="969" dy="449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Package Utilisateurs&#xa;-----------------------&#xa;- User&#xa;- Teacher&#xa;- Student" style="shape=folder;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="40" width="300" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Package StructureAcademique&#xa;-------------------------------&#xa;- Class&#xa;- AcademicYear&#xa;- StudentEnrollment" style="shape=folder;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="30" width="360" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Package Pedagogie&#xa;-------------------&#xa;- Subject&#xa;- ClassSubjectCurriculum" style="shape=folder;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="1190" y="230" width="320" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Package Evaluation&#xa;-------------------&#xa;- Grade" style="shape=folder;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="490" width="260" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Student utilise Class + Enrollment" style="edgeStyle=orthogonalEdgeStyle;dashed=1;html=1;endArrow=open;endFill=0;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Curriculum depend de Class + Year" style="edgeStyle=orthogonalEdgeStyle;dashed=1;html=1;endArrow=open;endFill=0;" parent="1" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1120" y="125"/>
+                            <mxPoint x="1120" y="275"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="Grade relie Student + Subject" style="edgeStyle=orthogonalEdgeStyle;dashed=1;html=1;endArrow=open;endFill=0;exitX=0.007;exitY=0.66;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1190" y="300" as="sourcePoint"/>
+                        <mxPoint x="830" y="515" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

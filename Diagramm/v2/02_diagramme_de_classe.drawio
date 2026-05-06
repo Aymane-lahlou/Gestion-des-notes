@@ -1,0 +1,76 @@
+<mxfile host="65bd71144e">
+    <diagram id="diag-class-1" name="Page-1">
+        <mxGraphModel dx="1877" dy="2397" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="User&#xa;--------------------&#xa;+ id: int&#xa;+ first_name: string&#xa;+ last_name: string&#xa;+ email: string&#xa;+ role: enum(admin,teacher,student)&#xa;+ is_active: bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="70" width="260" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Teacher&#xa;--------------------&#xa;+ user_id: int (PK/FK)&#xa;+ ssn: string&#xa;+ speciality: string" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="70" width="260" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Student&#xa;--------------------&#xa;+ user_id: int (PK/FK)&#xa;+ student_number: string&#xa;+ study_year: int&#xa;+ class_id: int?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="720" width="260" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Class&#xa;--------------------&#xa;+ id: int&#xa;+ name: string (unique)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="470" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="AcademicYear&#xa;--------------------&#xa;+ id: int&#xa;+ code: string (unique)&#xa;+ starts_on: date&#xa;+ ends_on: date&#xa;+ is_current: bool" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="-70" width="260" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="StudentEnrollment&#xa;--------------------&#xa;+ id: int&#xa;+ student_id: int&#xa;+ academic_year_id: int&#xa;+ class_id: int?&#xa;+ study_year: int?&#xa;+ is_active: bool&#xa;[unique(student, year)]" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="70" width="300" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Subject&#xa;--------------------&#xa;+ id: int&#xa;+ name: string&#xa;+ coefficient: decimal&#xa;+ teacher_id: int?&#xa;+ class_id: int?" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="730" y="580" width="260" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="ClassSubjectCurriculum&#xa;--------------------&#xa;+ id: int&#xa;+ class_id: int&#xa;+ academic_year_id: int&#xa;+ subject_id: int&#xa;+ coefficient_override: decimal?&#xa;+ is_required: bool&#xa;+ is_active: bool&#xa;[unique(class,year,subject)]" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="360" width="320" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Grade&#xa;--------------------&#xa;+ id: int&#xa;+ student_id: int&#xa;+ subject_id: int&#xa;+ grade_value: decimal (0..20)&#xa;+ status: enum(pass,failed)&#xa;+ grade_type: enum(final,exam,assignment,quiz)&#xa;+ period: string&#xa;[unique(student,subject,period)]" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="1210" y="660" width="330" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="1 --- 1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="1 --- 1" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="2" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" value="Class 1 --- 0..* Student" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="5" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="Student 1 --- 0..* Enrollment" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="4" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="Year 1 --- 0..* Enrollment" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="6" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="Class 1 --- 0..* Enrollment" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="5" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="Teacher 1 --- 0..* Subject" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="3" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="Class 1 --- 0..* Subject" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="5" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" value="Class 1 --- 0..* Curriculum" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="5" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="109" value="Year 1 --- 0..* Curriculum" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="6" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="110" value="Subject 1 --- 0..* Curriculum" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="8" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="111" value="Student 1 --- 0..* Grade" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="4" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" value="Subject 1 --- 0..* Grade" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;" parent="1" source="8" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

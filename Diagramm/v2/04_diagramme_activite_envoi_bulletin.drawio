@@ -1,0 +1,125 @@
+<mxfile host="65bd71144e">
+    <diagram id="diag-activity-1" name="Page-1">
+        <mxGraphModel dx="804" dy="513" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1900" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="ellipse;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="60" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Selectionner filtre classe/recherche" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="130" width="310" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Cliquer bouton: Envoyer tout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="220" width="310" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Construire student_ids depuis liste visible (filtree)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="310" width="390" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="student_ids non vide ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="440" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Desactiver bouton + etat loading&#xa;POST /api/admin/send-grades/bulk/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="610" width="390" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Valider admin + payload&#xa;Boucle sur chaque etudiant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="710" width="390" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Notes completes pour l&#39;etudiant ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="585" y="810" width="260" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Generer PDF + appeler webhook n8n&#xa;Marquer status=sent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="830" width="330" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Marquer status=failed&#xa;reason=missing_subject_grades" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="830" width="330" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Etudiant suivant ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="980" width="250" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Retour API: summary{requested,sent,failed,results}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="1140" width="450" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Retirer loading + reactiver bouton&#xa;Afficher toast de confirmation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="1250" width="430" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Afficher message: Aucun etudiant cible" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="1090" y="500" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="shape=doubleEllipse;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="695" y="1390" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="4" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="5" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="Oui" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="715" y="570" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="105" value="Non" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="6" target="15" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="7" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="8" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" value="Oui" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="980" y="870.090909090909" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="109" value="Non" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="450" y="870.090909090909" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="110" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" target="12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="980" y="870.090909090909" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="111" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" target="12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="450" y="870.090909090909" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="112" value="Oui" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="12" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="113" value="Non" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="12" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="114" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="13" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="115" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" parent="1" source="14" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="116" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;exitX=0.068;exitY=0.957;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="15" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1070" y="574.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="695" y="1390" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1110" y="575"/>
+                            <mxPoint x="1080" y="575"/>
+                            <mxPoint x="1080" y="560"/>
+                            <mxPoint x="695" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
