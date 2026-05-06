@@ -14,7 +14,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.gestion-notes.rule=Host(`${APP_DOMAIN_PRIMARY}`) || Host(`${APP_DOMAIN_SECONDARY}`)
+      - traefik.http.routers.gestion-notes.rule=Host(`${APP_DOMAIN_PRIMARY:-gestion.lahlou.tech}`) || Host(`${APP_DOMAIN_SECONDARY:-gestion.lahlou.dpdns.org}`)
       - traefik.http.routers.gestion-notes.entrypoints=${TRAEFIK_ENTRYPOINT:-websecure}
       - traefik.http.routers.gestion-notes.tls=true
       - traefik.http.routers.gestion-notes.tls.certresolver=${TRAEFIK_CERT_RESOLVER:-myresolver}
@@ -34,7 +34,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.gestion-notes-backend.rule=(Host(`${APP_DOMAIN_PRIMARY}`) || Host(`${APP_DOMAIN_SECONDARY}`)) && (PathPrefix(`/api`) || PathPrefix(`/admin`) || PathPrefix(`/media`))
+      - traefik.http.routers.gestion-notes-backend.rule=(Host(`${APP_DOMAIN_PRIMARY:-gestion.lahlou.tech}`) || Host(`${APP_DOMAIN_SECONDARY:-gestion.lahlou.dpdns.org}`)) && (PathPrefix(`/api`) || PathPrefix(`/admin`) || PathPrefix(`/media`))
       - traefik.http.routers.gestion-notes-backend.entrypoints=${TRAEFIK_ENTRYPOINT:-websecure}
       - traefik.http.routers.gestion-notes-backend.tls=true
       - traefik.http.routers.gestion-notes-backend.tls.certresolver=${TRAEFIK_CERT_RESOLVER:-myresolver}
