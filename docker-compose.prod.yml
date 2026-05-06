@@ -1,35 +1,46 @@
 services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000/api}
+    container_name: gestion-notes-frontend1
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - traefik-public
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.gestion-notes.rule=Host(`${APP_DOMAIN_PRIMARY}`) || Host(`${APP_DOMAIN_SECONDARY}`)
+      - traefik.http.routers.gestion-notes.entrypoints=${TRAEFIK_ENTRYPOINT:-websecure}
+      - traefik.http.routers.gestion-notes.tls=true
+      - traefik.http.routers.gestion-notes.tls.certresolver=${TRAEFIK_CERT_RESOLVER:-myresolver}
+      - traefik.http.routers.gestion-notes.priority=1
+      - traefik.http.services.gestion-notes.loadbalancer.server.port=3000
+
   backend:
     build:
       context: ./BACKEND/Gestion_Ma_Ec
       dockerfile: Dockerfile
-    container_name: gestion-notes-backend
-    restart: unless-stopped
+    container_name: gestion-notes-backend1
     env_file:
       - .env.production
-    ports:
-      - "8001:8000"
-    networks:
-      - app-net
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8001/api}
-    container_name: gestion-notes-frontend
     restart: unless-stopped
-    depends_on:
-      - backend
-    env_file:
-      - .env.production
-    ports:
-      - "3001:3000"
     networks:
-      - app-net
+      - traefik-public
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.gestion-notes-backend.rule=(Host(`${APP_DOMAIN_PRIMARY}`) || Host(`${APP_DOMAIN_SECONDARY}`)) && (PathPrefix(`/api`) || PathPrefix(`/admin`) || PathPrefix(`/media`))
+      - traefik.http.routers.gestion-notes-backend.entrypoints=${TRAEFIK_ENTRYPOINT:-websecure}
+      - traefik.http.routers.gestion-notes-backend.tls=true
+      - traefik.http.routers.gestion-notes-backend.tls.certresolver=${TRAEFIK_CERT_RESOLVER:-myresolver}
+      - traefik.http.routers.gestion-notes-backend.priority=100
+      - traefik.http.services.gestion-notes-backend.loadbalancer.server.port=8000
 
 networks:
-  app-net:
+  traefik-public:
     external: true
-    name: traefik-public
