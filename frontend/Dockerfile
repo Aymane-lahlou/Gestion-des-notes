@@ -2,10 +2,12 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package*.json /app/
+# Build context is project root in docker-compose.prod.yml.
+# Copy frontend dependency manifests explicitly so npm ci can use package-lock.json.
+COPY frontend/package*.json /app/
 RUN npm ci
 
-COPY . /app
+COPY frontend/ /app
 
 ARG VITE_API_BASE_URL=http://localhost:8001/api
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
