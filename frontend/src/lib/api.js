@@ -1,7 +1,10 @@
 import axios from "axios";
 import { clearTokens, getAccessToken, getRefreshToken, setTokens } from "./tokenStorage";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api";
+const rawApiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").trim();
+const API_BASE_URL =
+  (rawApiBaseUrl.includes(",") ? rawApiBaseUrl.split(",")[0].trim() : rawApiBaseUrl) ||
+  "http://localhost:8001/api";
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
