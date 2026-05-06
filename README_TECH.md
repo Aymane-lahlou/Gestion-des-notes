@@ -49,6 +49,14 @@ Admin action
     -> requests.post(...) to n8n webhook URL
 ```
 
+Production routing flow:
+```text
+Internet
+  -> Traefik (domain + TLS)
+    -> frontend container (serve on port 3000 internally)
+    -> backend container (gunicorn on port 8000 internally for /api, /admin, /media)
+```
+
 ---
 
 ## Technology Stack (Frontend + Backend + DB + Tooling)
@@ -73,6 +81,9 @@ Tooling:
 - `vite` for frontend dev server and build.
 - `eslint` + `eslint-plugin-react` + `eslint-plugin-react-hooks`.
 - Python virtual environment (`venv`) for backend dependency isolation.
+- Docker + Docker Compose for containerized production runtime.
+- Traefik labels in Compose for domain/TLS routing.
+- GitHub Actions (`appleboy/ssh-action`) for Oracle VM deployment.
 
 Database:
 - MySQL via Django ORM (`django.db.backends.mysql`).
@@ -317,17 +328,31 @@ Common pitfalls:
 ## Directory and File-by-File Role Map (Source Only)
 ### `/` (project root)
 - `.gitignore`: ignores local/generated files from git tracking.
+- `README.md`: short root project entry document.
 - `TEST_SMOKE.md`: manual smoke-test scenarios for admin/teacher/student flows.
+- `DB_RELATIONS_USAGE.md`: database table relation and usage guide.
+- `docker-compose.prod.yml`: production Docker Compose with Traefik routing labels.
 - `README_TECH.md`: this learning guide.
 
 ### `/Diagramm`
 - `class.drawio`: visual class/domain diagram for the project.
+- `v2/01_diagramme_cas_utilisation.drawio`: use-case UML diagram.
+- `v2/02_diagramme_de_classe.drawio`: class UML diagram.
+- `v2/03_diagramme_de_sequence_envoi_bulletin.drawio`: sequence UML diagram.
+- `v2/04_diagramme_activite_envoi_bulletin.drawio`: activity UML diagram.
+- `v2/05_diagramme_etats_transitions_envoi_bulletin.drawio`: state-transition UML diagram.
+- `v2/06_diagramme_de_package.drawio`: package UML diagram.
+- `v2/07_diagramme_de_communication_envoi_bulletin.drawio`: communication UML diagram.
+
+### `/.github/workflows`
+- `deploy-oracle-vm.yml`: CI/CD deployment pipeline to Oracle VM over SSH.
 
 ### `/BACKEND/Gestion_Ma_Ec`
 - `.env.example`: sample env keys required by backend.
 - `manage.py`: Django CLI entry point (`runserver`, `migrate`, `test`, custom commands).
 - `requirements.txt`: backend Python dependencies.
 - `check_db.py`: helper script for DB table/DDL inspection.
+- `Dockerfile`: backend image build (Python 3.11 slim + gunicorn).
 
 ### `/BACKEND/Gestion_Ma_Ec/Gestion_Ma_Ec`
 - `__init__.py`: package marker.
@@ -365,9 +390,15 @@ Common pitfalls:
 
 ### `/frontend`
 - `.env.example`: sample frontend env keys (`VITE_API_BASE_URL`).
+- `Dockerfile`: frontend image build and static serving.
 - `index.html`: Vite HTML entry.
 - `package.json`: frontend dependencies and scripts.
+- `package-lock.json`: lockfile used by `npm ci`.
 - `vite.config.js`: Vite config.
+
+### `/test`
+- `openlocation.py`: local helper script.
+- `test.py`: local helper script.
 
 ### `/frontend/src`
 - `main.jsx`: React bootstrap and provider wiring.
@@ -511,6 +542,25 @@ npm run build
 4. Develop one feature at a time with small commits.
 5. Run tests/build before pushing.
 
+### 10) Production deployment (Docker + Traefik)
+Create a root `.env.production` file (not committed) and include at least:
+- `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`
+- `CORS_ALLOW_ALL_ORIGINS`, `CORS_ALLOWED_ORIGINS`
+- `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT`, `DB_SSL_CA`
+- `JWT_ACCESS_MINUTES`, `JWT_REFRESH_DAYS`
+- `N8N_WEBHOOK_URL`, `N8N_WEBHOOK_SECRET`
+- `VITE_API_BASE_URL`
+- `APP_DOMAIN_PRIMARY`, `APP_DOMAIN_SECONDARY`
+- `TRAEFIK_ENTRYPOINT`, `TRAEFIK_CERT_RESOLVER`
+
+Deploy command used in VM:
+```bash
+docker compose -f docker-compose.prod.yml --env-file .env.production up -d --build --remove-orphans
+```
+
+Automated deploy:
+- `.github/workflows/deploy-oracle-vm.yml` pulls latest `main` and runs the same compose command.
+
 ---
 
 ## Smoke Test Workflow
@@ -560,6 +610,17 @@ Fix:
 - Activate correct virtualenv.
 - Re-run `pip install -r requirements.txt`.
 - Re-run `npm install` for frontend.
+
+### Docker frontend build fails at `npm ci`
+Possible causes:
+- Lockfile is missing from Docker build stage.
+- Compose build context and Dockerfile `COPY` paths do not match.
+
+Fix:
+- Ensure frontend Dockerfile copies manifests from the frontend folder when using root context.
+- Current working pattern:
+  - `COPY frontend/package*.json /app/`
+  - `COPY frontend/ /app`
 
 ### Frontend shows stale data after auth changes
 Fix:
